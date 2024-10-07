@@ -1,14 +1,10 @@
-import React from 'react';
-import {
-  View,
-  Text,
-  Platform,
-} from 'react-native';
-import PropTypes from 'prop-types';
-import { stylePropType } from './localPropTypes';
-import Controls from './Controls';
+import React from 'react'
+import { View, Text, Platform } from 'react-native'
+import PropTypes from 'prop-types'
+import { stylePropType } from './localPropTypes'
+import Controls from './Controls'
 
-import { getYear } from 'date-fns/getYear';
+import { getYear } from 'date-fns/getYear'
 
 export default function YearsHeader(props) {
   const {
@@ -28,14 +24,15 @@ export default function YearsHeader(props) {
     onYearViewPrevious,
     onYearViewNext,
     headingLevel,
-  } = props;
+  } = props
 
-  const disablePrevious = restrictNavigation && minDate && (getYear(minDate) >= year);
-  const disableNext = restrictNavigation && maxDate && (getYear(maxDate) <= year);
+  const disablePrevious =
+    restrictNavigation && minDate && getYear(minDate) >= year
+  const disableNext = restrictNavigation && maxDate && getYear(maxDate) <= year
 
-  const accessibilityProps = { accessibilityRole: 'header' };
+  const accessibilityProps = { accessibilityRole: 'header' }
   if (Platform.OS === 'web') {
-    accessibilityProps['aria-level'] = headingLevel;
+    accessibilityProps['aria-level'] = headingLevel
   }
 
   return (
@@ -48,7 +45,10 @@ export default function YearsHeader(props) {
         styles={styles.previousContainer}
         textStyles={[styles.navButtonText, textStyle, previousTitleStyle]}
       />
-      <Text style={[styles.yearsHeaderText, textStyle]} {...accessibilityProps}>
+      <Text
+        style={[styles.yearsHeaderText, textStyle]}
+        {...accessibilityProps}
+        allowFontScaling={false}>
         {title}
       </Text>
       <Controls
@@ -60,7 +60,7 @@ export default function YearsHeader(props) {
         textStyles={[styles.navButtonText, textStyle, nextTitleStyle]}
       />
     </View>
-  );
+  )
 }
 
 YearsHeader.propTypes = {
@@ -69,4 +69,4 @@ YearsHeader.propTypes = {
   title: PropTypes.string,
   onYearViewNext: PropTypes.func,
   onYearViewPrevious: PropTypes.func,
-};
+}

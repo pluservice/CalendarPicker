@@ -1,35 +1,34 @@
-import React, { Component } from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  TextInput,
-  Switch,
-} from 'react-native';
+import React, { Component } from 'react'
+import { StyleSheet, Text, View, Button, TextInput, Switch } from 'react-native'
 
-import { addDays } from 'date-fns/addDays';
-import { format } from 'date-fns/format';
-import { subDays } from 'date-fns/subDays';
+import { addDays } from 'date-fns/addDays'
+import { format } from 'date-fns/format'
+import { subDays } from 'date-fns/subDays'
 
-import CalendarPicker from './CalendarPicker';
+import CalendarPicker from './CalendarPicker'
 
 export default class App extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
-    let minDate = subDays(new Date(), 15);
-    let day = minDate;
-    let customDatesStyles = [];
+    let minDate = subDays(new Date(), 15)
+    let day = minDate
+    let customDatesStyles = []
     for (let i = 0; i < 30; i++) {
       customDatesStyles.push({
         date: day,
         // Random colors
-        style: { backgroundColor: '#' + ('#00000' + (Math.random() * (64 << 22) | 32768).toString(16)).slice(-6) },
+        style: {
+          backgroundColor:
+            '#' +
+            (
+              '#00000' + ((Math.random() * (64 << 22)) | 32768).toString(16)
+            ).slice(-6),
+        },
         textStyle: { color: 'black' }, // sets the font color
         containerStyle: [], // extra styling for day container
-      });
-      day = addDays(day, 1);
+      })
+      day = addDays(day, 1)
     }
 
     this.state = {
@@ -37,27 +36,26 @@ export default class App extends Component {
       enableRangeSelect: false,
       minDate,
       maxDate: addDays(new Date(), 90),
-      minRangeDuration: "1",
-      maxRangeDuration: "5",
+      minRangeDuration: '1',
+      maxRangeDuration: '5',
       selectedStartDate: null,
-    };
-    this.onDateChange = this.onDateChange.bind(this);
-    this.clear = this.clear.bind(this);
-    this.toggleEnableRange = this.toggleEnableRange.bind(this);
-    this.onMinRangeDuration = this.onMinRangeDuration.bind(this);
-    this.onMaxRangeDuration = this.onMaxRangeDuration.bind(this);
+    }
+    this.onDateChange = this.onDateChange.bind(this)
+    this.clear = this.clear.bind(this)
+    this.toggleEnableRange = this.toggleEnableRange.bind(this)
+    this.onMinRangeDuration = this.onMinRangeDuration.bind(this)
+    this.onMaxRangeDuration = this.onMaxRangeDuration.bind(this)
   }
 
   onDateChange(date, type) {
-    if (type === "START_DATE") {
+    if (type === 'START_DATE') {
       this.setState({
         selectedStartDate: date,
-      });
-    }
-    else {
+      })
+    } else {
       this.setState({
         selectedEndDate: date,
-      });
+      })
     }
   }
 
@@ -65,7 +63,7 @@ export default class App extends Component {
     this.setState({
       selectedStartDate: null,
       selectedEndDate: null,
-    });
+    })
   }
 
   toggleEnableRange(text) {
@@ -73,25 +71,25 @@ export default class App extends Component {
       enableRangeSelect: !this.state.enableRangeSelect,
       selectedStartDate: null,
       selectedEndDate: null,
-    });
+    })
   }
 
   onMinRangeDuration(val) {
-    let parsedVal = parseInt(val);
+    let parsedVal = parseInt(val)
     this.setState({
-      minRangeDuration: val && !isNaN(parsedVal) ? parsedVal + "" : undefined,
+      minRangeDuration: val && !isNaN(parsedVal) ? parsedVal + '' : undefined,
       selectedStartDate: null,
       selectedEndDate: null,
-    });
+    })
   }
 
   onMaxRangeDuration(val) {
-    let parsedVal = parseInt(val);
+    let parsedVal = parseInt(val)
     this.setState({
-      maxRangeDuration: val && !isNaN(parsedVal) ? parsedVal + "" : undefined,
+      maxRangeDuration: val && !isNaN(parsedVal) ? parsedVal + '' : undefined,
       selectedStartDate: null,
       selectedEndDate: null,
-    });
+    })
   }
 
   customDayHeaderStylesCallback({ dayOfWeek, month, year }) {
@@ -105,8 +103,8 @@ export default class App extends Component {
           textStyle: {
             color: 'blue',
             fontWeight: 'bold',
-          }
-        };
+          },
+        }
     }
   }
 
@@ -120,9 +118,13 @@ export default class App extends Component {
       maxRangeDuration,
       selectedStartDate,
       selectedEndDate,
-    } = this.state;
-    const formattedStartDate = selectedStartDate ? format(selectedStartDate, 'yyyy-MM-dd') : '';
-    const formattedEndDate = selectedEndDate ? format(selectedEndDate, 'yyyy-MM-dd') : '';
+    } = this.state
+    const formattedStartDate = selectedStartDate
+      ? format(selectedStartDate, 'yyyy-MM-dd')
+      : ''
+    const formattedEndDate = selectedEndDate
+      ? format(selectedEndDate, 'yyyy-MM-dd')
+      : ''
 
     return (
       <View style={styles.container}>
@@ -144,10 +146,14 @@ export default class App extends Component {
         />
 
         <View style={styles.topSpacing}>
-          <Text style={styles.text}>Selected (Start) date:  {formattedStartDate}</Text>
-          {!!formattedEndDate &&
-            <Text style={styles.text}>Selected End date:  {formattedEndDate}</Text>
-          }
+          <Text style={styles.text}>
+            Selected (Start) date: {formattedStartDate}
+          </Text>
+          {!!formattedEndDate && (
+            <Text style={styles.text}>
+              Selected End date: {formattedEndDate}
+            </Text>
+          )}
         </View>
 
         <View style={styles.topSpacing}>
@@ -158,34 +164,34 @@ export default class App extends Component {
           <Text style={styles.text}>Range select:</Text>
         </View>
         <Switch
-          trackColor={{ false: "#767577", true: "#81b0ff" }}
-          thumbColor={enableRangeSelect ? "#f5dd4b" : "#f4f3f4"}
+          trackColor={{ false: '#767577', true: '#81b0ff' }}
+          thumbColor={enableRangeSelect ? '#f5dd4b' : '#f4f3f4'}
           ios_backgroundColor="#3e3e3e"
           onValueChange={this.toggleEnableRange}
           value={enableRangeSelect}
         />
 
-        {enableRangeSelect &&
+        {enableRangeSelect && (
           <View>
             <Text style={styles.text}>minRangeDuration:</Text>
             <TextInput
               style={styles.textInput}
               onChangeText={this.onMinRangeDuration}
-              value={minRangeDuration || ""}
-              keyboardType={"number-pad"}
+              value={minRangeDuration || ''}
+              keyboardType={'number-pad'}
             />
 
             <Text style={styles.text}>maxRangeDuration:</Text>
             <TextInput
               style={styles.textInput}
               onChangeText={this.onMaxRangeDuration}
-              value={maxRangeDuration || ""}
-              keyboardType={"number-pad"}
+              value={maxRangeDuration || ''}
+              keyboardType={'number-pad'}
             />
           </View>
-        }
+        )}
       </View>
-    );
+    )
   }
 }
 
@@ -197,7 +203,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   topSpacing: {
-    marginTop: 20
+    marginTop: 20,
   },
   text: {
     fontSize: 24,
@@ -214,5 +220,5 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 20,
     paddingTop: 20,
     paddingBottom: 20,
-  }
-});
+  },
+})

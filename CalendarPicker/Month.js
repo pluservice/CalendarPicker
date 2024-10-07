@@ -1,14 +1,10 @@
-import React from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity
-} from 'react-native';
-import PropTypes from 'prop-types';
-import { Utils } from './Utils';
+import React from 'react'
+import { View, Text, TouchableOpacity } from 'react-native'
+import PropTypes from 'prop-types'
+import { Utils } from './Utils'
 
-import { getMonth } from 'date-fns/getMonth';
-import { getYear } from 'date-fns/getYear';
+import { getMonth } from 'date-fns/getMonth'
+import { getYear } from 'date-fns/getYear'
 
 export default function Month(props) {
   const {
@@ -20,55 +16,54 @@ export default function Month(props) {
     textStyle,
     minDate,
     maxDate,
-  } = props;
+  } = props
 
-  const MONTHS = months || Utils.MONTHS; // English Month Array
-  const monthName = MONTHS[month];
+  const MONTHS = months || Utils.MONTHS // English Month Array
+  const monthName = MONTHS[month]
 
-  let monthOutOfRange;
-  let monthIsBeforeMin = false;
-  let monthIsAfterMax = false;
-  let monthIsDisabled = false;
+  let monthOutOfRange
+  let monthIsBeforeMin = false
+  let monthIsAfterMax = false
+  let monthIsDisabled = false
 
   // Check whether month is outside of min/max range.
-  if (maxDate && (getYear(maxDate) === year)) {
-    monthIsAfterMax = month > getMonth(maxDate);
+  if (maxDate && getYear(maxDate) === year) {
+    monthIsAfterMax = month > getMonth(maxDate)
   }
-  if (minDate && (getYear(minDate) === year)) {
-    monthIsBeforeMin = month < getMonth(minDate);
+  if (minDate && getYear(minDate) === year) {
+    monthIsBeforeMin = month < getMonth(minDate)
   }
 
   // ToDo: disabledMonths props to disable months separate from disabledDates
 
-  monthOutOfRange = monthIsAfterMax || monthIsBeforeMin || monthIsDisabled;
+  monthOutOfRange = monthIsAfterMax || monthIsBeforeMin || monthIsDisabled
 
   const onSelect = () => {
-    let _year = year;
-    if (minDate && (year < getYear(minDate))) {
-      _year = getYear(minDate);
+    let _year = year
+    if (minDate && year < getYear(minDate)) {
+      _year = getYear(minDate)
     }
-    if (maxDate && (year > getYear(maxDate))) {
-      _year = getYear(maxDate);
+    if (maxDate && year > getYear(maxDate)) {
+      _year = getYear(maxDate)
     }
-    onSelectMonth({ month, year: _year });
-  };
+    onSelectMonth({ month, year: _year })
+  }
 
   return (
     <View style={[styles.monthContainer]}>
-      {!monthOutOfRange ?
-        <TouchableOpacity
-          onPress={onSelect}>
-          <Text style={[styles.monthText, textStyle]}>
+      {!monthOutOfRange ? (
+        <TouchableOpacity onPress={onSelect}>
+          <Text style={[styles.monthText, textStyle]} allowFontScaling={false}>
             {monthName}
           </Text>
         </TouchableOpacity>
-        :
-        <Text style={[textStyle, styles.disabledText]}>
+      ) : (
+        <Text style={[textStyle, styles.disabledText]} allowFontScaling={false}>
           {monthName}
         </Text>
-      }
+      )}
     </View>
-  );
+  )
 }
 
 Month.propTypes = {
@@ -76,4 +71,4 @@ Month.propTypes = {
   currentMonth: PropTypes.number,
   currentYear: PropTypes.number,
   onSelectMonth: PropTypes.func,
-};
+}

@@ -2,6 +2,6 @@
 // prop-types package.
 // These may need to be tweaked as prop types are improved.
 
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
 
-export const stylePropType = PropTypes.any;
+export const stylePropType = PropTypes.any

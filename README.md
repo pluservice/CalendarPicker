@@ -31,27 +31,27 @@ npm install --save react-native-calendar-picker
 # Example
 
 ```js
-import React, { Component } from "react";
-import { StyleSheet, Text, View } from "react-native";
-import CalendarPicker from "react-native-calendar-picker";
+import React, { Component } from 'react'
+import { StyleSheet, Text, View } from 'react-native'
+import CalendarPicker from 'react-native-calendar-picker'
 
 export default class App extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       selectedStartDate: null,
-    };
-    this.onDateChange = this.onDateChange.bind(this);
+    }
+    this.onDateChange = this.onDateChange.bind(this)
   }
 
   onDateChange(date) {
     this.setState({
       selectedStartDate: date,
-    });
+    })
   }
   render() {
-    const { selectedStartDate } = this.state;
-    const startDate = selectedStartDate ? selectedStartDate.toString() : "";
+    const { selectedStartDate } = this.state
+    const startDate = selectedStartDate ? selectedStartDate.toString() : ''
     return (
       <View style={styles.container}>
         <CalendarPicker onDateChange={this.onDateChange} />
@@ -60,17 +60,17 @@ export default class App extends Component {
           <Text>SELECTED DATE:{startDate}</Text>
         </View>
       </View>
-    );
+    )
   }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#FFFFFF",
+    backgroundColor: '#FFFFFF',
     marginTop: 100,
   },
-});
+})
 ```
 
 ## CalendarPicker Props
@@ -161,39 +161,39 @@ Order of precedence:
 ![alt tag](https://user-images.githubusercontent.com/6295083/82028654-8f625d00-965b-11ea-8076-45ae609be296.gif)
 
 ```js
-import React, { Component } from "react";
-import { StyleSheet, Text, View } from "react-native";
-import CalendarPicker from "react-native-calendar-picker";
+import React, { Component } from 'react'
+import { StyleSheet, Text, View } from 'react-native'
+import CalendarPicker from 'react-native-calendar-picker'
 
 export default class App extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       selectedStartDate: null,
       selectedEndDate: null,
-    };
-    this.onDateChange = this.onDateChange.bind(this);
+    }
+    this.onDateChange = this.onDateChange.bind(this)
   }
 
   onDateChange(date, type) {
-    if (type === "END_DATE") {
+    if (type === 'END_DATE') {
       this.setState({
         selectedEndDate: date,
-      });
+      })
     } else {
       this.setState({
         selectedStartDate: date,
         selectedEndDate: null,
-      });
+      })
     }
   }
 
   render() {
-    const { selectedStartDate, selectedEndDate } = this.state;
-    const minDate = new Date(); // Today
-    const maxDate = new Date(2017, 6, 3);
-    const startDate = selectedStartDate ? selectedStartDate.toString() : "";
-    const endDate = selectedEndDate ? selectedEndDate.toString() : "";
+    const { selectedStartDate, selectedEndDate } = this.state
+    const minDate = new Date() // Today
+    const maxDate = new Date(2017, 6, 3)
+    const startDate = selectedStartDate ? selectedStartDate.toString() : ''
+    const endDate = selectedEndDate ? selectedEndDate.toString() : ''
 
     return (
       <View style={styles.container}>
@@ -213,17 +213,17 @@ export default class App extends Component {
           <Text>SELECTED END DATE:{endDate}</Text>
         </View>
       </View>
-    );
+    )
   }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#FFFFFF",
+    backgroundColor: '#FFFFFF',
     marginTop: 100,
   },
-});
+})
 ```
 
 ### Complex Example, Changing Fonts and Colors, Language and etc...
@@ -231,39 +231,39 @@ const styles = StyleSheet.create({
 ![alt tag](https://user-images.githubusercontent.com/6295083/82028709-9c7f4c00-965b-11ea-9705-790ce38929c0.gif)
 
 ```js
-import React, { Component } from "react";
-import { StyleSheet, Text, View } from "react-native";
-import CalendarPicker from "react-native-calendar-picker";
+import React, { Component } from 'react'
+import { StyleSheet, Text, View } from 'react-native'
+import CalendarPicker from 'react-native-calendar-picker'
 
 export default class App extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       selectedStartDate: null,
       selectedEndDate: null,
-    };
-    this.onDateChange = this.onDateChange.bind(this);
+    }
+    this.onDateChange = this.onDateChange.bind(this)
   }
 
   onDateChange(date, type) {
-    if (type === "END_DATE") {
+    if (type === 'END_DATE') {
       this.setState({
         selectedEndDate: date,
-      });
+      })
     } else {
       this.setState({
         selectedStartDate: date,
         selectedEndDate: null,
-      });
+      })
     }
   }
 
   render() {
-    const { selectedStartDate, selectedEndDate } = this.state;
-    const minDate = new Date(); // Today
-    const maxDate = new Date(2017, 6, 3);
-    const startDate = selectedStartDate ? selectedStartDate.toString() : "";
-    const endDate = selectedEndDate ? selectedEndDate.toString() : "";
+    const { selectedStartDate, selectedEndDate } = this.state
+    const minDate = new Date() // Today
+    const maxDate = new Date(2017, 6, 3)
+    const startDate = selectedStartDate ? selectedStartDate.toString() : ''
+    const endDate = selectedEndDate ? selectedEndDate.toString() : ''
 
     return (
       <View style={styles.container}>
@@ -272,20 +272,20 @@ export default class App extends Component {
           allowRangeSelection={true}
           minDate={minDate}
           maxDate={maxDate}
-          weekdays={["Seg", "Ter", "Qua", "Qui", "Sex", "Sab", "Dom"]}
+          weekdays={['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab', 'Dom']}
           months={[
-            "Janeiro",
-            "Fevereiro",
-            "Março",
-            "Abril",
-            "Maio",
-            "Junho",
-            "Julho",
-            "Agosto",
-            "Setembro",
-            "Outubro",
-            "Novembro",
-            "Dezembro",
+            'Janeiro',
+            'Fevereiro',
+            'Março',
+            'Abril',
+            'Maio',
+            'Junho',
+            'Julho',
+            'Agosto',
+            'Setembro',
+            'Outubro',
+            'Novembro',
+            'Dezembro',
           ]}
           previousTitle="Anterior"
           nextTitle="Próximo"
@@ -294,8 +294,8 @@ export default class App extends Component {
           selectedDayTextColor="#000000"
           scaleFactor={375}
           textStyle={{
-            fontFamily: "Cochin",
-            color: "#000000",
+            fontFamily: 'Cochin',
+            color: '#000000',
           }}
           onDateChange={this.onDateChange}
         />
@@ -305,17 +305,17 @@ export default class App extends Component {
           <Text>SELECTED END DATE:{endDate}</Text>
         </View>
       </View>
-    );
+    )
   }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#FFFFFF",
+    backgroundColor: '#FFFFFF',
     marginTop: 100,
   },
-});
+})
 ```
 
 ### Custom styling individual dates

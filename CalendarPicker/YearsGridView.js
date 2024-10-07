@@ -1,8 +1,7 @@
-import React from 'react';
-import { View } from 'react-native';
-import PropTypes from 'prop-types';
-import Year from './Year';
-
+import React from 'react'
+import { View } from 'react-native'
+import PropTypes from 'prop-types'
+import Year from './Year'
 
 export default function YearsGridView(props) {
   const {
@@ -14,13 +13,13 @@ export default function YearsGridView(props) {
     textStyle,
     minDate,
     maxDate,
-  } = props;
-  const guideArray = [ 0, 1, 2, 3, 4 ];
-  let year = intialYear - 13; // center current year in grid
+  } = props
+  const guideArray = [0, 1, 2, 3, 4]
+  let year = intialYear - 13 // center current year in grid
 
   function generateColumns() {
     const column = guideArray.map(() => {
-      year++;
+      year++
       return (
         <Year
           key={year}
@@ -33,24 +32,23 @@ export default function YearsGridView(props) {
           maxDate={maxDate}
           textStyle={textStyle}
         />
-      );
-    });
-    return column;
+      )
+    })
+    return column
   }
   return (
     <View style={styles.yearsWrapper}>
-      { guideArray.map(index => (
+      {guideArray.map((index) => (
         <View key={year} style={styles.yearsRow}>
-          { generateColumns(index) }
+          {generateColumns(index)}
         </View>
-      ))
-      }
+      ))}
     </View>
-  );
+  )
 }
 
 YearsGridView.propTypes = {
   styles: PropTypes.shape(),
   intialYear: PropTypes.number.isRequired,
   onSelectYear: PropTypes.func,
-};
+}
